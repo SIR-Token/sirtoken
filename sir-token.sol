@@ -1,7 +1,9 @@
 // SPDX-License-Identifier: MIT
 /**----------------------------------------------------------------
-    This is: v2.0 
-    defunct: 0x5E57C528EF9126200D76620e7b843600635E74Ca
+    This is: v2.1 
+    defunct: 0x612c6aB3c55B897BFf8cdFFc9e71143fd01f7f2A
+             0x5E57C528EF9126200D76620e7b843600635E74Ca
+             
 
                            ,▄▄███,                                 
                     ,▄▄███████████▄                                             
@@ -1233,9 +1235,9 @@ contract SirToken is IERC20, Context {
         require(index_ >= 0xA0 && index_ <= 0xAC, "25");
         require(_address[index_] != address_, "09");
         address previousAddress = _address[index_];
-        if (_balances[previousAddress] > 0) {
-            moveBalance(previousAddress, address_);
-        }
+        //if (_balances[previousAddress] > 0) {
+        //    moveBalance(previousAddress, address_);
+        //}
         _address[index_] = address_;
         if (isAccountLocked(previousAddress)) {
             setLock(_address[index_], _locked[previousAddress]);
@@ -1471,9 +1473,9 @@ contract SirToken is IERC20, Context {
      */
     function cleanUpAndEndTheBurn() private {
         require(Bool.buyBack, "21");
-        moveBalance(_address[0xA0], _address[0xA2]);
-        moveBalance(_address[0xA1], _address[0xA2]);
-        moveBalance(_address[0xA3], _address[0xA2]);
+        //moveBalance(_address[0xA0], _address[0xA2]);
+        //moveBalance(_address[0xA1], _address[0xA2]);
+        //moveBalance(_address[0xA3], _address[0xA2]);
         Tax[0xA0].enabled = false;
         Tax[0xA1].enabled = false;
         Bool.buyBack = false;
@@ -1524,7 +1526,7 @@ contract SirToken is IERC20, Context {
      *  @notice Required:
      *      - Total.burned + amount_ has to be less or equal to Max burn
      *      - amount has to be less or equal to balance
-     */
+     *
     function burn(
         address from_, 
         uint256 amount_
@@ -1532,7 +1534,7 @@ contract SirToken is IERC20, Context {
         require(Total.burned + amount_ <= Max.burn, "22");
         require(amount_ <= _balances[from_], "05");
         __burn(from_, amount_);
-    }
+    }*/
 
     /**
      *  @dev burns tokens from address
@@ -1587,7 +1589,7 @@ contract SirToken is IERC20, Context {
      *  @notice Required:
      *      - eth balance must be greater or equal to amount
      *      - token balance must be greater or equal to amount
-     */
+     *
     function addLiquidity(
         uint256 eAmount_,
         uint256 tAmount_
@@ -1595,7 +1597,7 @@ contract SirToken is IERC20, Context {
         require(address(this).balance >= eAmount_, "16");
         require(_balances[_address[0xAC]] >= tAmount_, "05");
         _addLiquidity();
-    }
+    }*/
 
     /**
      *  @dev transfer amount of tokens from_ address to to_ address
